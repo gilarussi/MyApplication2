@@ -2,9 +2,12 @@ package com.example.myapplication2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
@@ -23,6 +26,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class MainActivity extends AppCompatActivity {
+
 
     ArrayList<String> s;
     ArrayAdapter arrayAdapter;
@@ -124,5 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
     }
 }

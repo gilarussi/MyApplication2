@@ -3,6 +3,7 @@ package com.example.myapplication2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         s=new ArrayList<String>();
         s.add("one");
         s.add("two");
@@ -67,52 +69,25 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Right is swiped", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Right Swipe");
 
-                try {
-                String stringSenderEmail = "gil.arussi@boyar.org.il";
-                String stringReceiverEmail = "gil2005.ar@gmail.com";
-                String stringPasswordSenderEmail = "pomodoro";
-                String stringHost = "smtp.gmail.com";
+                String email = "gil2005.ar@gmail.com";
+                String subject = "job offer";
+                String message = "hey";
 
-                Properties properties = System.getProperties();
-                properties.put("mail.smtp.host", stringHost);
-                properties.put("mail.smtp.port", "465");
-                properties.put("mail.smtp.ssl.enable", "true");
-                properties.put("mail.smtp.auth", "true");
+                String[] addresses = email.split(",");
 
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:"));
+                intent.putExtra(Intent.EXTRA_EMAIL,addresses);
+                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                intent.putExtra(Intent.EXTRA_TEXT, message);
 
-                javax.mail.Session session = Session.getInstance(properties, new Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(stringSenderEmail, stringPasswordSenderEmail);
-                    }
-                });
-
-
-                MimeMessage mimeMessage = new MimeMessage(session);
-
-                    mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(stringReceiverEmail));
-
-                    mimeMessage.setSubject("Android App Email");
-                    mimeMessage.setText("Hello, I want to work for you");
-
-                    Thread thread = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            try {
-                                Transport.send(mimeMessage);
-                            } catch (MessagingException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-                    thread.start();
-
-                } catch (AddressException e) {
-                    e.printStackTrace();
-                } catch (MessagingException e) {
-                    e.printStackTrace();
+                if (intent.resolveActivity(getPackageManager()) != null)
+                {
+                    startActivity(Intent.createChooser(intent, "Send Email"));
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "NO APP IS INSTALLED", Toast.LENGTH_SHORT).show();
                 }
 
 

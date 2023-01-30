@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class resume extends AppCompatActivity {
+public class resume extends AppCompatActivity implements View.OnClickListener {
 
     Button btnToApp;
     @Override
@@ -16,13 +16,12 @@ public class resume extends AppCompatActivity {
         setContentView(R.layout.activity_resume);
 
         btnToApp=findViewById(R.id.btnToApp);
-        btnToApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnToApp.setOnClickListener(this);
+        }
+    @Override
+    public void onClick(View view) {
 
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
     }
 }

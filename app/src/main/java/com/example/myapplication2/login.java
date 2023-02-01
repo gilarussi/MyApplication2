@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class login extends AppCompatActivity implements View.OnClickListener {
 
     Button btnToReg, login;
-    EditText usernameLogin, passwordLogin;
+    EditText emailLogin, passwordLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         btnToReg = findViewById(R.id.btnToReg);
         btnToReg.setOnClickListener(this);
 
-        usernameLogin = findViewById(R.id.usernameLogin);
-        usernameLogin.setOnClickListener(this);
+        emailLogin = findViewById(R.id.emailLogin);
+        emailLogin.setOnClickListener(this);
 
         passwordLogin = findViewById(R.id.passwordLogin);
         passwordLogin.setOnClickListener(this);
@@ -44,7 +44,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         }
         if(view==login)
         {
-            if (usernameLogin.getText().toString().equals("") || passwordLogin.getText().toString().equals(""))
+            if (emailLogin.getText().toString().equals("") || passwordLogin.getText().toString().equals(""))
             {
                 Toast.makeText(login.this, "empty", Toast.LENGTH_SHORT).show();
             }

@@ -49,10 +49,10 @@
         app:layout_constraintVertical_bias="0.07" />
 
     <EditText
-        android:id="@+id/usernameRegister"
+        android:id="@+id/nameRegister"
         android:layout_width="225dp"
         android:layout_height="55dp"
-        android:hint="Username"
+        android:hint="Name"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
